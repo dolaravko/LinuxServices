@@ -6,7 +6,7 @@
 **1.**Install xtrabackup [percona xtrabackup](https://www.percona.com/doc/percona-xtrabackup/2.4/installation/apt_repo.html)<br>
 On Sentora server (Ubuntu):
 
-```
+````
 wget https://repo.percona.com/apt/percona-release_0.1-3.$(lsb_release -sc)_all.deb
 
 sudo dpkg -i percona-release_0.1-3.$(lsb_release -sc)_all.deb
@@ -14,19 +14,29 @@ sudo dpkg -i percona-release_0.1-3.$(lsb_release -sc)_all.deb
 sudo apt-get update
 
 sudo apt-get install percona-xtrabackup-24
+<<<<<<< HEAD
 ```
 
 **2.**Create folder for backup on Sentora server<br>
+=======
+````
+2. Create folder for backup on Sentora server<br>
+>>>>>>> a948ea31a9f7236d80b4e9f0d31312e5ebd62886
 
 ````
 mkdir  -p /home/backup
 ````
+<<<<<<< HEAD
 
 **3.**Create folder for mysql backup and script folder on Sentora server<br>
+=======
+3. Create folder for mysql backup and script folder on Sentora server<br>
+>>>>>>> a948ea31a9f7236d80b4e9f0d31312e5ebd62886
 
-```
+````
 mkdir  -p /home/backup/mysql
 mkdir  -p /home/backup/script
+<<<<<<< HEAD
 ```
 
 **4.**Download script to folder<br>
@@ -57,6 +67,11 @@ BACKUPSERVERFOLDER="/home/sentora/backup/"
 
 # loacation of ssh private key on sentora server 
 BACKUPSERVERPATHTOSSHKEY="/home/backup/script/.ssh/sentora-disk"
+=======
+````
+4. Put script on folder<br>
+````vim /home/backup/script/sentoraFullBackup.sh````
+>>>>>>> a948ea31a9f7236d80b4e9f0d31312e5ebd62886
 
 # ssh port on backup server
 BACKUPSERVERSSHPORT="22"
