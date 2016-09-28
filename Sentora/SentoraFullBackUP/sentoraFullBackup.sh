@@ -8,6 +8,8 @@
 #DAY=`date +%Y-%m-%d`
 # day in week 
 DAY=`date '+%u'`
+NUMBEROFWEEK=`date '+%V'`
+DATEOFDAY=`date '+%d-%m-%Y'`
 
 
 # backup location on sentora server
@@ -64,6 +66,18 @@ echo "****** Start copy backup  $(date)" >> $FOLDERBACKUP/sentoraFullBackup.log
 
 scp -P $BACKUPSERVERSSHPORT -i $BACKUPSERVERPATHTOSSHKEY  $FOLDERBACKUP/sentoraFullBackup_$DAY.tar.gz $BACKUPSERVERUSER@$BACKUPSERVERIP:$BACKUPSERVERFOLDER/
 
+
+# backup on s3
+if [ "$DAY" == "7" ]; then
+
+    DELETEWEEK=$NUMBEROFWEEK-2
+
+    aws s3 rm s3://backup-sentora/sentoraFullBackup_$DELETEWEEK.tar.gz
+    aws s3 cp $FOLDERBACKUP/sentoraFullBackup_$DAY.tar.gz  s3://backup-sentora/sentoraFullBackup_$NUMBEROFWEEK.tar.gz
+
+else
+
+# remove tar
 rm $FOLDERBACKUP/sentoraFullBackup_$DAY.tar.gz
 
 echo "" >> $FOLDERBACKUP/sentoraFullBackup.log
